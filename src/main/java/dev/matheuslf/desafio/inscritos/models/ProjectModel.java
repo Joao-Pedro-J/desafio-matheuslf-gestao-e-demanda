@@ -1,5 +1,6 @@
 package dev.matheuslf.desafio.inscritos.models;
 
+import dev.matheuslf.desafio.inscritos.dto.ProjectDTO;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
@@ -7,7 +8,7 @@ import jakarta.persistence.Id;
 import jakarta.validation.constraints.NotNull;
 import org.hibernate.validator.constraints.Length;
 
-import java.util.Date;
+import java.time.LocalDateTime;
 
 @Entity(name = "tb_project")
 public class ProjectModel {
@@ -21,18 +22,25 @@ public class ProjectModel {
 
     private String description;
 
-    private Date startDate;
+    private LocalDateTime startDate;
 
-    private Date endDate;
+    private LocalDateTime endDate;
 
     public ProjectModel() {
     }
 
-    public ProjectModel(String name, String description, Date startDate, Date endDate) {
+    public ProjectModel(String name, String description, LocalDateTime startDate, LocalDateTime endDate) {
         this.name = name;
         this.description = description;
         this.startDate = startDate;
         this.endDate = endDate;
+    }
+
+    public ProjectModel(ProjectDTO projectDTO) {
+        this.name = projectDTO.name();
+        this.description = projectDTO.description();
+        this.startDate = LocalDateTime.now();
+        this.endDate = projectDTO.endDate();
     }
 
     public Long getId() {
@@ -55,19 +63,19 @@ public class ProjectModel {
         this.description = description;
     }
 
-    public Date getStartDate() {
+    public LocalDateTime getStartDate() {
         return startDate;
     }
 
-    public void setStartDate(Date startDate) {
+    public void setStartDate(LocalDateTime startDate) {
         this.startDate = startDate;
     }
 
-    public Date getEndDate() {
+    public LocalDateTime getEndDate() {
         return endDate;
     }
 
-    public void setEndDate(Date endDate) {
+    public void setEndDate(LocalDateTime endDate) {
         this.endDate = endDate;
     }
 }

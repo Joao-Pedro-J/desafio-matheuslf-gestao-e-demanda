@@ -4,7 +4,7 @@ import jakarta.persistence.*;
 import jakarta.validation.constraints.NotNull;
 import org.hibernate.validator.constraints.Length;
 
-import java.util.Date;
+import java.time.LocalDateTime;
 
 @Entity(name = "tb_task")
 public class TaskModel {
@@ -22,7 +22,7 @@ public class TaskModel {
 
     private PriorityTask priority;
 
-    private Date dueDate;
+    private LocalDateTime dueDate;
 
     @ManyToOne(targetEntity = ProjectModel.class)
     @JoinColumn(name = "project_id")
@@ -31,7 +31,7 @@ public class TaskModel {
     public TaskModel() {
     }
 
-    public TaskModel(String title, String description, StatusTask status, PriorityTask priority, Date dueDate, ProjectModel projectId) {
+    public TaskModel(String title, String description, StatusTask status, PriorityTask priority, LocalDateTime dueDate, ProjectModel projectId) {
         this.title = title;
         this.description = description;
         this.status = status;
@@ -76,11 +76,11 @@ public class TaskModel {
         this.priority = priority;
     }
 
-    public Date getDueDate() {
+    public LocalDateTime getDueDate() {
         return dueDate;
     }
 
-    public void setDueDate(Date dueDate) {
+    public void setDueDate(LocalDateTime dueDate) {
         this.dueDate = dueDate;
     }
 
