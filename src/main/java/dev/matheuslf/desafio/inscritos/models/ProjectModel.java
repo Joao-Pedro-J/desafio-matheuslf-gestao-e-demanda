@@ -9,7 +9,7 @@ import org.hibernate.validator.constraints.Length;
 
 import java.util.Date;
 
-@Entity
+@Entity(name = "tb_project")
 public class ProjectModel {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
